@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:58:29 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/18 17:55:24 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:15:40 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <cmath>
+#include <climits>
+#include <cfloat>
 
 #define BOLD_ON "\033[1m"
 #define BOLD_OFF "\033[0m"
@@ -22,19 +24,28 @@
 #define RESET "\033[0m"
 #define GREEN "\033[32m"
 #define RED "\033[31m"
+#define BLUE "\033[34m"
+#define MAGENTA "\033[35m"
 
 class Fixed {
 	private:
 		int _value;
 		static const int _nbBits; //shared between all instances
 	public:
-		Fixed();
-		Fixed(const Fixed &other);
-		Fixed &operator=(const Fixed &other);
-		~Fixed();
+		Fixed(); //default constructor
+		Fixed(const int integer); //constructor const int
+		Fixed(const float floater); //constructor const float
+		Fixed(const Fixed &other); //copy constructor
+		Fixed &operator=(const Fixed &other); //assignment operator '='
+		~Fixed(); //Default destructor
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
+		float toFloat( void )const;
+		int toInt( void )const;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixe); //assignment operator '<<'
+
 /*
 
 int Var = 12;

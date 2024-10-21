@@ -6,11 +6,13 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 11:59:09 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/18 17:39:29 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:12:29 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int Fixed::_nbBits = 8;
 
 Fixed::Fixed() : _value(0) {
 	std::cout << BOLD_ON GREEN << "Default constructor called" << RESET <<std::endl;
