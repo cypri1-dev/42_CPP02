@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:58:29 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/21 13:39:41 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:48:37 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include <iostream>
 #include <cmath>
 #include <climits>
-#include <cfloat>
 
 #define BOLD_ON "\033[1m"
 #define BOLD_OFF "\033[0m"
