@@ -6,11 +6,12 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:49:05 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/28 09:08:16 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:20:01 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <climits>
 
 const int Fixed::_nbBits = 8;
 
@@ -60,53 +61,114 @@ void Fixed::setRawBits( int const raw ) {
 }
 
 float	Fixed::toFloat( void )const {
-	return((float)this->_value / (1 << this->_nbBits));
+	return((float)this->getRawBits() / (1 << this->_nbBits));
 }
 
 int	Fixed::toInt( void )const {
-	return (this->_value >> this->_nbBits);
+	return (this->getRawBits() >> this->_nbBits);
 }
 
 bool Fixed::operator>(Fixed const &other)const {
-	return (this->_value > other._value);
+	return (this->getRawBits() > other.getRawBits());
 }
 
 bool Fixed::operator<(Fixed const &other)const {
-	return (this->_value < other._value);
+	return (this->getRawBits() < other.getRawBits());
 }
 
 bool Fixed::operator>=(Fixed const &other)const {
-	return (this->_value >= other._value);
+	return (this->getRawBits() >= other.getRawBits());
 }
 
 bool Fixed::operator<=(Fixed const &other)const {
-	return (this->_value <= other._value);
+	return (this->getRawBits() <= other.getRawBits());
 }
 
 bool Fixed::operator==(Fixed const &other)const {
-	return (this->_value == other._value);
+	return (this->getRawBits() == other.getRawBits());
 }
 
 bool Fixed::operator!=(Fixed const &other)const {
-	return (this->_value != other._value);
+	return (this->getRawBits() != other.getRawBits());
 }
 
 Fixed Fixed::operator+(Fixed const &other)const {
-	//add protection overflow
-	return Fixed(this->_value + other._value);
+	
+	Fixed res(this->toFloat() + other.toFloat());
+	return (res);
 }
 
 Fixed Fixed::operator-(Fixed const &other)const {
-	//add protection overflow
-	return Fixed(this->_value - other._value);
+	
+	Fixed res(this->toFloat() - other.toFloat());
+	return (res);
 }
 
 Fixed Fixed::operator*(Fixed const &other)const {
-	//add protection overflow
-	return Fixed(this->_value * other._value);
+
+	Fixed res(this->toFloat() * other.toFloat());
+	return (res);
 }
 
 Fixed Fixed::operator/(Fixed const &other)const {
-	//add protection overflow & division by 0
-	return Fixed(this->_value / other._value);
+
+	if (other.getRawBits() == 0)
+	{
+		std::cout << BOLD_ON RED << "What a dirty division by 0" << RESET << std::endl;
+		return Fixed(-1);
+	}
+	Fixed res(this->toFloat() / other.toFloat());
+	return (res);
+}
+
+Fixed &Fixed::operator++(void)
+{
+	this->setRawBits(this->getRawBits() + 1);
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp(*this); // copy object
+	this->setRawBits(this->getRawBits() + 1);
+	return (tmp);
+}
+
+Fixed &Fixed::operator--(void)
+{
+	this->setRawBits(this->getRawBits() - 1);
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	this->setRawBits(this->getRawBits() - 1);
+	return (tmp);
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b ? a : b);
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	return (a > b ? a : b);
+}
+
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	return (a < b ? a : b);
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	return (a > b ? a : b);
+}
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixe)
+{
+	out << fixe.toFloat();
+	return (out);
 }
