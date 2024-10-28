@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:47:38 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/21 14:48:50 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/28 09:06:13 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
+#include <climits>
 
 #define BOLD_ON "\033[1m"
 #define BOLD_OFF "\033[0m"
@@ -48,10 +50,10 @@ class Fixed {
 		bool operator==(Fixed const &other)const;
 		bool operator!=(Fixed const &other)const;
 
-		Fixed operator+(Fixed const &other);
-		Fixed operator-(Fixed const &other);
-		Fixed operator/(Fixed const &other);
-		Fixed operator*(Fixed const &other);
+		Fixed operator+(Fixed const &other)const;
+		Fixed operator-(Fixed const &other)const;
+		Fixed operator/(Fixed const &other)const;
+		Fixed operator*(Fixed const &other)const;
 
 		Fixed &operator++(void);
 		Fixed operator++(int);
