@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:49:05 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/28 12:20:01 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:06:37 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,24 @@ Fixed::Fixed(const int integer)
 {
 	std::cout << BOLD_ON YELLOW << "Integer constructor called" << RESET << std::endl;
 	if (integer > (INT_MAX >> this->_nbBits) || integer < (INT_MIN >> this->_nbBits))
+	{
 		std::cout << BOLD_ON RED << "Overflow detected" << RESET << std::endl;
-	this->_value = integer << this->_nbBits;
+		this->_value = -1;
+	}
+	else
+		this->_value = integer << this->_nbBits;
 }
 Fixed::Fixed(const float floater)
 {
 	std::cout << BOLD_ON BLUE << "Float constructor called" << RESET << std::endl;
 	int intPart = (int)roundf(floater);
 	if (intPart > (INT_MAX >> this->_nbBits) || intPart < (INT_MIN >> this->_nbBits))
+	{
 		std::cout << BOLD_ON << RED << "Overflow detected" << RESET << std::endl;
-	this->_value = (int)roundf(floater * (1 << this->_nbBits));
+		this->_value = -1;
+	}
+	else
+		this->_value = (int)roundf(floater * (1 << this->_nbBits));
 }
 
 Fixed::Fixed(const Fixed &other) : _value(other._value) {
