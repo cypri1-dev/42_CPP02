@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:49:05 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/28 15:06:37 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/31 11:36:18 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,27 +131,27 @@ Fixed Fixed::operator/(Fixed const &other)const {
 
 Fixed &Fixed::operator++(void)
 {
-	this->setRawBits(this->getRawBits() + 1);
+	this->setRawBits((int)roundf(this->toFloat() + 1) << 8);
 	return (*this);
 }
 
 Fixed Fixed::operator++(int)
 {
 	Fixed tmp(*this); // copy object
-	this->setRawBits(this->getRawBits() + 1);
+	this->setRawBits((int)roundf(this->toFloat() + 1) << 8);
 	return (tmp);
 }
 
 Fixed &Fixed::operator--(void)
 {
-	this->setRawBits(this->getRawBits() - 1);
+	this->setRawBits((int)roundf(this->toFloat() - 1) << 8);
 	return (*this);
 }
 
 Fixed Fixed::operator--(int)
 {
 	Fixed tmp(*this);
-	this->setRawBits(this->getRawBits() - 1);
+	this->setRawBits((int)roundf(this->toFloat() - 1) << 8);
 	return (tmp);
 }
 

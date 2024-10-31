@@ -6,7 +6,7 @@
 /*   By: cyferrei <cyferrei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:18:26 by cyferrei          #+#    #+#             */
-/*   Updated: 2024/10/28 13:56:04 by cyferrei         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:02:31 by cyferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 class Point {
 	private:
-		const Fixed _x;
-		const Fixed _y;
+		Fixed const _x;
+		Fixed const _y;
 	public:
 		Point();
 		Point(const float x, const float y);
